@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Videojuego Web</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            justify-content: center;
+            display: flex;
+        }
+
+        h1 {
+            color: white; 
+            font-size: 6rem; 
+            margin-bottom: 1rem; 
+            text-align: center;
+        }
+
+        .objectives li {
+            padding: 1rem;
+        }
+
+        .btn-next {
+            background-color: #91dfe1;
+            padding: 1rem 3.5rem;
+            border-radius: 1rem;
+            color: white;
+            text-decoration: none;
+            font-size: 3rem;
+            position: fixed;
+            bottom: 2rem;
+            right: 4rem;
+        }
+
+        .girl {
+            position: fixed;
+            width: 16rem;
+            bottom: 0rem;
+            left: 1rem;
+            z-index: 100;
+        }
+
+        .board {
+            border: 1.2rem solid #3E7997;
+            background-color: #5F578A;
+            width: 70%;
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 3rem;
+            margin-left: 15rem;
+        }
+
+        .vocabulary {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .vocabulary-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            width: 15rem;
+            height: 25rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content:space-around;
+            margin-bottom: 1rem;
+        }
+
+        .vocabulary-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: black;
+        }
+
+        .vocabulary-image {
+            margin-bottom: 1rem;
+        }
+
+        .vocabulary-sound {
+            width: 6rem;
+            height: 6rem;
+            margin-bottom: 1rem;
+        }
+
+        @media screen and (max-width: 880px) {
+            .board {
+                width: 90%;
+                height: auto;
+                padding: 2rem 0;
+            }
+
+            .game-header h1 {
+                font-size: 2rem !important;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .board {
+                width: 90%;
+                padding: 1.5rem 0;
+            }
+
+            .game-header h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+            .game-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+        <section class="board">
+            <div class="game-header" style="padding: 1%; margin: 0;">
+                <h1>let's learn</h1>
+                <div class="vocabulary">
+                    <div class="vocabulary-card">
+                        <h2 class="vocabulary-title">Head</h2>
+                        <img src="Media/head.png" alt="head" class="vocabulary-image" style="width: 8rem; height: 8rem;">
+                        <img src="Media/volume.png" alt="sound" class="vocabulary-sound" onclick="playSound('vocabulary/head')" style="cursor: pointer;">
+                    </div>
+                    <div class="vocabulary-card">
+                        <h2 class="vocabulary-title">Ear</h2>
+                        <img src="Media/ear.png" alt="ear" class="vocabulary-image" style="width: 5rem; height: 8rem;">
+                        <img src="Media/volume.png" alt="sound" class="vocabulary-sound" onclick="playSound('vocabulary/ears')" style="cursor: pointer;">
+                    </div>
+                    <div class="vocabulary-card">
+                        <h2 class="vocabulary-title">Eyes</h2>
+                        <img src="Media/eyes.png" alt="eyes" class="vocabulary-image" style="width: 10rem; height: 8rem;">
+                        <img src="Media/volume.png" alt="sound" class="vocabulary-sound" onclick="playSound('vocabulary/eyes')" style="cursor: pointer;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <a href="vocabulary2.html" class="btn-next">NEXT</a>
+        <img src="Media/1.png" alt="girl" class="girl">
+
+    <script src="script.js"></script>
+</body>
+</html>

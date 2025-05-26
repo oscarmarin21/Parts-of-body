@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Videojuego Web</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        
+        
+        h1 {
+            color: white; 
+            font-size: 6rem; 
+            margin-bottom: 0; 
+            text-align: center;
+        }
+        
+        .authors {
+            text-align: center;
+            font-style: italic;
+            color: #555;
+            margin-top: 20px;
+        }
+
+        .body-part {
+            position: fixed;
+            width: 20rem;
+            z-index: -100;
+        }
+
+        .game-container-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .game-container {
+            border: 1rem solid #3E7997;
+            background-color: #5F578A;
+            width: 48rem;
+            height: 23rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 3rem;
+            z-index: 100;
+        }
+
+    @media screen and (max-width: 1096px) {
+        .toes {
+            display: none;
+        }
+    }
+    @media screen and (max-width: 1072px) {
+        .brain {
+            display: none;
+        }
+    }
+    @media screen and (max-width: 880px) {
+        .mouth, .ear, .heart {
+            display: none;
+        }
+    }
+    @media screen and (max-width: 880px) {
+        .game-container-container {
+            padding-top: 10rem;
+        }
+
+        .game-container {
+            width: 90%;
+            height: auto;
+            padding: 2rem 0;
+        }
+
+        .game-header h1 {
+            font-size: 2rem !important;
+        }
+
+        .play-button {
+            width: 7rem !important;
+            height: 7rem !important;
+        }
+
+        .characters {
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        .authors {
+            font-size: 1.2rem !important;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .game-container {
+            width: 90%;
+            padding: 1.5rem 0;
+        }
+
+        .game-header h1 {
+            font-size: 3rem;
+        }
+
+        .play-button {
+            width: 5rem !important;
+            height: 5rem !important;
+        }
+
+        .authors {
+            font-size: 1rem !important;
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        .game-header h1 {
+            font-size: 2.5rem;
+        }
+
+        .play-button {
+            width: 4rem !important;
+            height: 4rem !important;
+        }
+    }
+
+    /* Animación de respiración para el botón */
+    @keyframes breathe {
+        0%, 100% {
+            transform: scale(1);
+            opacity: 0.8;
+        }
+        50% {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+    }
+
+    .play-button.breathing {
+        animation: breathe 2s ease-in-out infinite;
+    }
+
+    .play-button.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+        cursor: not-allowed;
+    }
+    </style>
+</head>
+<body>
+    <!-- Audio element (hidden) -->
+    <audio id="backgroundAudio" preload="auto">
+        <source src="Media/intro.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <div class="game-container-container">
+        <div class="game-container">
+            <div class="game-header" style="padding: 0; margin: 0;">
+                <h1>Parts of body</h1>
+            </div>
+
+            <div class="game-body" style="padding: 0; margin: 0;">
+                <a href="content.html" id="playLink" class="disabled">
+                    <img src="Media/play.png" alt="Play" class="play-button disabled" id="playButton" style="width: 9rem; height: 9rem;">
+                </a>
+            </div>
+
+            <div class="authors" style="color: white; font-size: 1.5rem;">
+                <p>Kevin Gomez, Mariana Pedraza y Alejandra Osorio</p>
+            </div>
+        </div>
+
+        <div class="characters-container" style="display: flex ; justify-content: center;">
+            <img src="Media/characters.png" class="characters" style="width: 55rem; height: 24rem;">
+        </div>
+    </div>
+
+    <img src="Media/brain.png" alt="Cerebro" class="body-part brain" style="top: 28rem; right: -8rem; transform: rotate(-97deg);">
+    <img src="Media/mouth.png" alt="Boca" class="body-part mouth" style="top: 22rem; left: -4rem; width: 16rem;">
+    <img src="Media/ear.png" alt="Oreja" class="body-part ear" style="top: -3rem; left: 0rem; width: 12rem;">
+    <img src="Media/toes.png" alt="Dedos" class="body-part toes" style="bottom: 0rem; left: 2rem; width: 16rem;">
+    <img src="Media/heart.png" alt="Corazón" class="body-part heart" style="top: -1rem; right: -4rem; width: 13rem;">
+
+    <script>
+        let audioPlayed = false;
+        const audio = document.getElementById('backgroundAudio');
+        const playButton = document.getElementById('playButton');
+        const playLink = document.getElementById('playLink');
+
+        // Función para habilitar el botón con animación
+        function enablePlayButton() {
+            playButton.classList.remove('disabled');
+            playLink.classList.remove('disabled');
+            playButton.classList.add('breathing');
+            console.log('Botón de play habilitado con animación');
+        }
+
+        // Función para reproducir audio
+        function playAudio() {
+            if (!audioPlayed) {
+                setTimeout(function() {
+                    audio.play().then(function() {
+                        console.log('Audio reproducido exitosamente');
+                        audioPlayed = true;
+                        
+                        // Escuchar cuando termine el audio
+                        audio.addEventListener('ended', function() {
+                            console.log('Audio terminado, habilitando botón');
+                            enablePlayButton();
+                        });
+                        
+                    }).catch(function(error) {
+                        console.log('Error al reproducir audio:', error);
+                        // Si hay error, habilitar el botón de todas formas
+                        enablePlayButton();
+                    });
+                }, 2000); // 2 segundos después de la interacción
+            }
+        }
+
+        // Intentar reproducir automáticamente al cargar
+        window.addEventListener('load', function() {
+            // Primero intentamos reproducción automática
+            setTimeout(function() {
+                audio.play().then(function() {
+                    console.log('Audio reproducido automáticamente');
+                    audioPlayed = true;
+                    
+                    // Escuchar cuando termine el audio
+                    audio.addEventListener('ended', function() {
+                        console.log('Audio terminado, habilitando botón');
+                        enablePlayButton();
+                    });
+                    
+                }).catch(function(error) {
+                    console.log('Reproducción automática bloqueada, esperando interacción del usuario');
+                    
+                    // Si falla, agregar listeners para la primera interacción
+                    const events = ['click', 'touchstart', 'keydown', 'mousemove'];
+                    
+                    function handleFirstInteraction() {
+                        playAudio();
+                        // Remover todos los listeners después de la primera interacción
+                        events.forEach(event => {
+                            document.removeEventListener(event, handleFirstInteraction);
+                        });
+                    }
+                    
+                    // Agregar listeners para detectar la primera interacción
+                    events.forEach(event => {
+                        document.addEventListener(event, handleFirstInteraction, { once: true });
+                    });
+                });
+            }, 1500); // Intentar después de 1.5 segundos
+        });
+
+        // Prevenir clicks en el enlace cuando está deshabilitado
+        playLink.addEventListener('click', function(e) {
+            if (playLink.classList.contains('disabled')) {
+                e.preventDefault();
+                console.log('Botón deshabilitado, esperando que termine el audio');
+                return false;
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
