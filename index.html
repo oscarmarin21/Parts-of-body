@@ -3,267 +3,441 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Videojuego Web</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>404 - Perdido en el Espacio</title>
     <style>
-        
-        
-        h1 {
-            color: white; 
-            font-size: 6rem; 
-            margin-bottom: 0; 
-            text-align: center;
-        }
-        
-        .authors {
-            text-align: center;
-            font-style: italic;
-            color: #555;
-            margin-top: 20px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .body-part {
-            position: fixed;
-            width: 20rem;
-            z-index: -100;
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            color: white;
         }
 
-        .game-container-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: transparent;
         }
 
-        .game-container {
-            border: 1rem solid #3E7997;
-            background-color: #5F578A;
-            width: 48rem;
-            height: 23rem;
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        .star:nth-child(odd) {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .container {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-top: 3rem;
-            z-index: 100;
+            height: 100vh;
+            text-align: center;
+            z-index: 10;
+            position: relative;
         }
 
-    @media screen and (max-width: 1096px) {
-        .toes {
-            display: none;
-        }
-    }
-    @media screen and (max-width: 1072px) {
-        .brain {
-            display: none;
-        }
-    }
-    @media screen and (max-width: 880px) {
-        .mouth, .ear, .heart {
-            display: none;
-        }
-    }
-    @media screen and (max-width: 880px) {
-        .game-container-container {
-            padding-top: 10rem;
+        .astronaut {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 2rem;
+            animation: float 3s ease-in-out infinite;
+            position: relative;
         }
 
-        .game-container {
-            width: 90%;
-            height: auto;
-            padding: 2rem 0;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(2deg); }
+            66% { transform: translateY(10px) rotate(-2deg); }
         }
 
-        .game-header h1 {
-            font-size: 2rem !important;
+        .astronaut-body {
+            width: 120px;
+            height: 140px;
+            background: linear-gradient(145deg, #e8e8e8, #ffffff);
+            border-radius: 60px 60px 30px 30px;
+            position: relative;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .play-button {
-            width: 7rem !important;
-            height: 7rem !important;
+        .helmet {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(145deg, rgba(173, 216, 230, 0.8), rgba(135, 206, 235, 0.9));
+            border-radius: 50%;
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 3px solid #87CEEB;
+            animation: helmet-glow 2s ease-in-out infinite alternate;
         }
 
-        .characters {
-            width: 100% !important;
-            height: auto !important;
+        @keyframes helmet-glow {
+            0% { box-shadow: 0 0 20px rgba(135, 206, 235, 0.5); }
+            100% { box-shadow: 0 0 40px rgba(135, 206, 235, 0.8); }
         }
 
-        .authors {
-            font-size: 1.2rem !important;
-        }
-    }
-
-    @media screen and (max-width: 600px) {
-        .game-container {
-            width: 90%;
-            padding: 1.5rem 0;
-        }
-
-        .game-header h1 {
-            font-size: 3rem;
+        .face {
+            width: 60px;
+            height: 60px;
+            background: #ffdbac;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
-        .play-button {
-            width: 5rem !important;
-            height: 5rem !important;
+        .eyes {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
-        .authors {
-            font-size: 1rem !important;
+        .eye {
+            width: 8px;
+            height: 8px;
+            background: #333;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 5px;
+            animation: blink 3s infinite;
         }
-    }
 
-    @media screen and (max-width: 400px) {
-        .game-header h1 {
-            font-size: 2.5rem;
+        @keyframes blink {
+            0%, 90%, 100% { transform: scaleY(1); }
+            95% { transform: scaleY(0.1); }
         }
 
-        .play-button {
-            width: 4rem !important;
-            height: 4rem !important;
+        .arms {
+            position: absolute;
+            top: 40px;
+            width: 100%;
         }
-    }
 
-    /* Animación de respiración para el botón */
-    @keyframes breathe {
-        0%, 100% {
-            transform: scale(1);
+        .arm {
+            width: 30px;
+            height: 80px;
+            background: linear-gradient(145deg, #e8e8e8, #ffffff);
+            border-radius: 15px;
+            position: absolute;
+            animation: wave 2s ease-in-out infinite alternate;
+        }
+
+        .arm.left {
+            left: -20px;
+            transform-origin: top center;
+        }
+
+        .arm.right {
+            right: -20px;
+            transform-origin: top center;
+        }
+
+        @keyframes wave {
+            0% { transform: rotate(-10deg); }
+            100% { transform: rotate(10deg); }
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 3s ease infinite, bounce 2s ease-in-out infinite;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .coordinates {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
             opacity: 0.8;
         }
-        50% {
-            transform: scale(1.1);
-            opacity: 1;
+
+        .highlight-38 {
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 2rem;
+            text-shadow: 0 0 20px #ff6b6b;
+            animation: pulse-glow 1.5s ease-in-out infinite alternate;
         }
-    }
 
-    .play-button.breathing {
-        animation: breathe 2s ease-in-out infinite;
-    }
+        @keyframes pulse-glow {
+            0% { 
+                transform: scale(1);
+                text-shadow: 0 0 20px #ff6b6b;
+            }
+            100% { 
+                transform: scale(1.1);
+                text-shadow: 0 0 30px #ff6b6b, 0 0 40px #ff6b6b;
+            }
+        }
 
-    .play-button.disabled {
-        opacity: 0.5;
-        pointer-events: none;
-        cursor: not-allowed;
-    }
+        .message {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fade-in 2s ease-in;
+        }
+
+        @keyframes fade-in {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 0.9; transform: translateY(0); }
+        }
+
+        .btn-home {
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            animation: button-float 3s ease-in-out infinite;
+        }
+
+        @keyframes button-float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .btn-home:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+            background: linear-gradient(45deg, #764ba2 0%, #667eea 100%);
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: particle-float 4s linear infinite;
+        }
+
+        @keyframes particle-float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 5rem;
+            }
+            
+            .message {
+                font-size: 1.4rem;
+                padding: 0 1rem;
+            }
+            
+            .astronaut {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .astronaut-body {
+                width: 90px;
+                height: 110px;
+            }
+            
+            .helmet {
+                width: 80px;
+                height: 80px;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Audio element (hidden) -->
-    <audio id="backgroundAudio" preload="auto">
-        <source src="Media/intro.mp3" type="audio/mpeg">
-        Tu navegador no soporta el elemento de audio.
-    </audio>
-
-    <div class="game-container-container">
-        <div class="game-container">
-            <div class="game-header" style="padding: 0; margin: 0;">
-                <h1>Parts of body</h1>
-            </div>
-
-            <div class="game-body" style="padding: 0; margin: 0;">
-                <a href="content.html" id="playLink" class="disabled">
-                    <img src="Media/play.png" alt="Play" class="play-button disabled" id="playButton" style="width: 9rem; height: 9rem;">
-                </a>
-            </div>
-
-            <div class="authors" style="color: white; font-size: 1.5rem;">
-                <p>Kevin Gomez, Mariana Pedraza y Alejandra Osorio</p>
+    <div class="stars" id="stars"></div>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <div class="astronaut">
+            <div class="astronaut-body">
+                <div class="helmet">
+                    <div class="face">
+                        <div class="eyes">
+                            <div class="eye"></div>
+                            <div class="eye"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="arms">
+                    <div class="arm left"></div>
+                    <div class="arm right"></div>
+                </div>
             </div>
         </div>
-
-        <div class="characters-container" style="display: flex ; justify-content: center;">
-            <img src="Media/characters.png" class="characters" style="width: 55rem; height: 24rem;">
+        
+        <div class="error-code">404</div>
+        
+        <div class="coordinates">
+            Coordenadas: X: 127.0.0.1 | Y: <span class="highlight-38">3.8</span> | Z: ∞
         </div>
+        
+        <div class="message">
+            Houston, tenemos un problema...<br>
+            Esta página se ha perdido en el espacio
+        </div>
+        
+        <a href="javascript:history.back()" class="btn-home">
+            🚀 Regresar a Casa
+        </a>
     </div>
 
-    <img src="Media/brain.png" alt="Cerebro" class="body-part brain" style="top: 28rem; right: -8rem; transform: rotate(-97deg);">
-    <img src="Media/mouth.png" alt="Boca" class="body-part mouth" style="top: 22rem; left: -4rem; width: 16rem;">
-    <img src="Media/ear.png" alt="Oreja" class="body-part ear" style="top: -3rem; left: 0rem; width: 12rem;">
-    <img src="Media/toes.png" alt="Dedos" class="body-part toes" style="bottom: 0rem; left: 2rem; width: 16rem;">
-    <img src="Media/heart.png" alt="Corazón" class="body-part heart" style="top: -1rem; right: -4rem; width: 13rem;">
-
     <script>
-        let audioPlayed = false;
-        const audio = document.getElementById('backgroundAudio');
-        const playButton = document.getElementById('playButton');
-        const playLink = document.getElementById('playLink');
-
-        // Función para habilitar el botón con animación
-        function enablePlayButton() {
-            playButton.classList.remove('disabled');
-            playLink.classList.remove('disabled');
-            playButton.classList.add('breathing');
-            console.log('Botón de play habilitado con animación');
-        }
-
-        // Función para reproducir audio
-        function playAudio() {
-            if (!audioPlayed) {
-                setTimeout(function() {
-                    audio.play().then(function() {
-                        console.log('Audio reproducido exitosamente');
-                        audioPlayed = true;
-                        
-                        // Escuchar cuando termine el audio
-                        audio.addEventListener('ended', function() {
-                            console.log('Audio terminado, habilitando botón');
-                            enablePlayButton();
-                        });
-                        
-                    }).catch(function(error) {
-                        console.log('Error al reproducir audio:', error);
-                        // Si hay error, habilitar el botón de todas formas
-                        enablePlayButton();
-                    });
-                }, 2000); // 2 segundos después de la interacción
+        // Crear estrellas
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const numberOfStars = 100;
+            
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                const size = Math.random() * 3 + 1;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                
+                starsContainer.appendChild(star);
             }
         }
 
-        // Intentar reproducir automáticamente al cargar
-        window.addEventListener('load', function() {
-            // Primero intentamos reproducción automática
-            setTimeout(function() {
-                audio.play().then(function() {
-                    console.log('Audio reproducido automáticamente');
-                    audioPlayed = true;
-                    
-                    // Escuchar cuando termine el audio
-                    audio.addEventListener('ended', function() {
-                        console.log('Audio terminado, habilitando botón');
-                        enablePlayButton();
-                    });
-                    
-                }).catch(function(error) {
-                    console.log('Reproducción automática bloqueada, esperando interacción del usuario');
-                    
-                    // Si falla, agregar listeners para la primera interacción
-                    const events = ['click', 'touchstart', 'keydown', 'mousemove'];
-                    
-                    function handleFirstInteraction() {
-                        playAudio();
-                        // Remover todos los listeners después de la primera interacción
-                        events.forEach(event => {
-                            document.removeEventListener(event, handleFirstInteraction);
-                        });
+        // Crear partículas flotantes
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 4 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                
+                particlesContainer.appendChild(particle);
+                
+                // Remover partícula después de la animación
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
                     }
-                    
-                    // Agregar listeners para detectar la primera interacción
-                    events.forEach(event => {
-                        document.addEventListener(event, handleFirstInteraction, { once: true });
-                    });
-                });
-            }, 1500); // Intentar después de 1.5 segundos
+                }, 6000);
+            }, 300);
+        }
+
+        // Efecto de mouse hover en el astronauta
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            createParticles();
+            
+            const astronaut = document.querySelector('.astronaut');
+            const container = document.querySelector('.container');
+            
+            container.addEventListener('mousemove', function(e) {
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                astronaut.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            container.addEventListener('mouseleave', function() {
+                astronaut.style.transform = 'rotateX(0deg) rotateY(0deg)';
+            });
         });
 
-        // Prevenir clicks en el enlace cuando está deshabilitado
-        playLink.addEventListener('click', function(e) {
-            if (playLink.classList.contains('disabled')) {
-                e.preventDefault();
-                console.log('Botón deshabilitado, esperando que termine el audio');
-                return false;
+        // Animación especial para el 3.8
+        document.addEventListener('DOMContentLoaded', function() {
+            const highlight38 = document.querySelector('.highlight-38');
+            
+            setInterval(() => {
+                highlight38.style.transform = 'scale(1.2)';
+                highlight38.style.color = '#4ecdc4';
+                
+                setTimeout(() => {
+                    highlight38.style.transform = 'scale(1)';
+                    highlight38.style.color = '#ff6b6b';
+                }, 200);
+            }, 2000);
+        });
+
+        // Sonido de teclado espacial (simulado con vibración en móviles)
+        document.querySelector('.btn-home').addEventListener('click', function() {
+            if (navigator.vibrate) {
+                navigator.vibrate([100, 50, 100]);
             }
         });
     </script>
-    <script src="script.js"></script>
 </body>
 </html>
